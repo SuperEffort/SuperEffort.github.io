@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MOCK 方案 对比</title>
+    <title>MOCK方案对比</title>
     <url>/2021/09/09/test1/</url>
     <content><![CDATA[<h1 id="常见的-MOCK-方案"><a href="#常见的-MOCK-方案" class="headerlink" title="常见的 MOCK 方案"></a>常见的 MOCK 方案</h1><h3 id="1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件"><a href="#1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件" class="headerlink" title="1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)"></a>1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)</h3><p><strong>优点：</strong> 无</p>
 <p><strong>缺点：</strong></p>
 <ol>
 <li>和其他方案比 Mock 效果不好。</li>
-<li>与真实 Server 环境的切换非常麻烦，一切需要侵入代码切换环境的行为都是不好的。</li>
+<li>与真实 Server 环境的切换非常麻烦，一切需要侵入代码切换环境的行为都是不好的。<span id="more"></span>
+<h2 id="2-请求拦截"><a href="#2-请求拦截" class="headerlink" title="2.请求拦截"></a>2.请求拦截</h2></li>
 </ol>
-<h2 id="2-请求拦截"><a href="#2-请求拦截" class="headerlink" title="2.请求拦截"></a>2.请求拦截</h2><p>代表：<a href="http://mockjs.com/">Mock.js</a></p>
+<p>代表：<a href="http://mockjs.com/">Mock.js</a></p>
 <p>示例：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Mock.mock(<span class="regexp">/\\/</span>api\\/visitor\\/list/, <span class="string">&#x27;get&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">code</span>: <span class="number">2000</span>,</span><br><span class="line">  <span class="attr">msg</span>: <span class="string">&#x27;ok&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;data|10&#x27;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&#x27;id|+1&#x27;</span>: <span class="number">6</span>,</span><br><span class="line">      <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;@csentence(5)&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;tag&#x27;</span>: <span class="string">&#x27;@integer(6, 9)-@integer(10, 14)岁 @cword(&quot;零有&quot;, 1)基础&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;lesson_image&#x27;</span>: <span class="string">&quot;&lt;https://images.pexels.com/3737094/pexels-photo-3737094.jpeg&gt;&quot;</span>,</span><br><span class="line">      <span class="string">&#x27;lesson_package&#x27;</span>: <span class="string">&#x27;L1基础指令课&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;done&#x27;</span>: <span class="string">&#x27;@integer(10000, 99999)&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
