@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo next 配置相关</title>
+    <url>/2021/09/10/%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8/</url>
+    <content><![CDATA[<h2 id="1-使用-more-阅读全文，跳转页面不会回到顶部"><a href="#1-使用-more-阅读全文，跳转页面不会回到顶部" class="headerlink" title="1. 使用 more  阅读全文，跳转页面不会回到顶部"></a>1. 使用 <code>more </code> 阅读全文，跳转页面不会回到顶部</h2><p>hexo next 在文章中使用 <code>&lt;!-- more --&gt;</code> 手动进行截断，进入文章详情页后会不回到顶部。<code>more</code> 被识别成了锚点</p>
+<p><strong>解决方法</strong></p>
+<ol>
+<li>选择文件 themes/next/layout/_macro/post.swig</li>
+<li>删除代码中的 <code>#more</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; url_for(post.path) &#125;&#125;#more&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;contents&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MOCK方案对比</title>
     <url>/2021/09/09/MOCK%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<h1 id="常见的-MOCK-方案"><a href="#常见的-MOCK-方案" class="headerlink" title="常见的 MOCK 方案"></a>常见的 MOCK 方案</h1><h3 id="1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件"><a href="#1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件" class="headerlink" title="1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)"></a>1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)</h3><p><strong>优点：</strong> 无</p>
@@ -51,22 +67,6 @@
 ]]></content>
       <tags>
         <tag>Mock</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo next 配置相关</title>
-    <url>/2021/09/10/%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8/</url>
-    <content><![CDATA[<h2 id="1-使用-more-阅读全文，跳转页面不会回到顶部"><a href="#1-使用-more-阅读全文，跳转页面不会回到顶部" class="headerlink" title="1. 使用 more  阅读全文，跳转页面不会回到顶部"></a>1. 使用 <code>more </code> 阅读全文，跳转页面不会回到顶部</h2><p>hexo next 在文章中使用 <code>&lt;!-- more --&gt;</code> 手动进行截断，进入文章详情页后会不回到顶部。<code>more</code> 被识别成了锚点</p>
-<p><strong>解决方法</strong></p>
-<ol>
-<li>选择文件 themes/next/layout/_macro/post.swig</li>
-<li>删除代码中的 <code>#more</code></li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; url_for(post.path) &#125;&#125;#more&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;contents&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
