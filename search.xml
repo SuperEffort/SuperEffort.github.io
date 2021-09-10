@@ -2,13 +2,13 @@
 <search>
   <entry>
     <title>MOCK方案对比</title>
-    <url>/2021/09/09/test1/</url>
+    <url>/2021/09/09/MOCK%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<h1 id="常见的-MOCK-方案"><a href="#常见的-MOCK-方案" class="headerlink" title="常见的 MOCK 方案"></a>常见的 MOCK 方案</h1><h3 id="1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件"><a href="#1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件" class="headerlink" title="1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)"></a>1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)</h3><p><strong>优点：</strong> 无</p>
 <p><strong>缺点：</strong></p>
 <ol>
 <li>和其他方案比 Mock 效果不好。</li>
 <li>与真实 Server 环境的切换非常麻烦，一切需要侵入代码切换环境的行为都是不好的。<span id="more"></span>
-<h2 id="2-请求拦截"><a href="#2-请求拦截" class="headerlink" title="2.请求拦截"></a>2.请求拦截</h2></li>
+<h3 id="2-请求拦截"><a href="#2-请求拦截" class="headerlink" title="2.请求拦截"></a>2.请求拦截</h3></li>
 </ol>
 <p>代表：<a href="http://mockjs.com/">Mock.js</a></p>
 <p>示例：</p>
@@ -27,7 +27,7 @@
 <p><a href="https://zhuanlan.zhihu.com/p/24594294">ajax 和 fetch 区别</a></p>
 </li>
 </ol>
-<h2 id="3-接口管理工具"><a href="#3-接口管理工具" class="headerlink" title="3.接口管理工具"></a>3.接口管理工具</h2><p><strong>代表：</strong> <a href="https://github.com/thx/RAP">rap</a>、<a href="https://swagger.io/">swagger</a>、<a href="https://github.com/dreamhead/moco">moco</a>、<a href="https://github.com/YMFE/yapi">yapi</a></p>
+<h3 id="3-接口管理工具"><a href="#3-接口管理工具" class="headerlink" title="3.接口管理工具"></a>3.接口管理工具</h3><p><strong>代表：</strong> <a href="https://github.com/thx/RAP">rap</a>、<a href="https://swagger.io/">swagger</a>、<a href="https://github.com/dreamhead/moco">moco</a>、<a href="https://github.com/YMFE/yapi">yapi</a></p>
 <p><strong>优点：</strong></p>
 <ol>
 <li>配置功能强大，接口管理与 Mock 一体，后端修改接口 Mock 也跟着更改，可靠。</li>
@@ -37,7 +37,7 @@
 <li>配置复杂，依赖后端，可能会出现后端不愿意出手，或者等配置完了，接口也开发出来了的情况。</li>
 <li>一般会作为大团队的基础建设而存在</li>
 </ol>
-<h2 id="4-本地-Node-服务器"><a href="#4-本地-Node-服务器" class="headerlink" title="4.本地 Node 服务器"></a>4.本地 Node 服务器</h2><p><strong>代表：</strong><a href="https://github.com/typicode/json-server">json-server</a></p>
+<h3 id="4-本地-Node-服务器"><a href="#4-本地-Node-服务器" class="headerlink" title="4.本地 Node 服务器"></a>4.本地 Node 服务器</h3><p><strong>代表：</strong><a href="https://github.com/typicode/json-server">json-server</a></p>
 <p><strong>优点：</strong></p>
 <ol>
 <li>配置简单，json-server 甚至可以 0 代码 30 秒启动一个 REST API Server。</li>
