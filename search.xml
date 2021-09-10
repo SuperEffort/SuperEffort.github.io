@@ -56,7 +56,7 @@
   <entry>
     <title>Hexo next 配置相关</title>
     <url>/2021/09/10/hexo-next/</url>
-    <content><![CDATA[<h2 id="1-使用-more-阅读全文，跳转页面不会回到顶部"><a href="#1-使用-more-阅读全文，跳转页面不会回到顶部" class="headerlink" title="1. 使用 more  阅读全文，跳转页面不会回到顶部"></a>1. 使用 <code>more </code> 阅读全文，跳转页面不会回到顶部</h2><p>hexo next 在文章中使用 <code>&lt;!-- more --&gt;</code> 手动进行截断，进入文章详情页后会不回到顶部。<code>more</code> 被识别成了锚点</p>
+    <content><![CDATA[<h2 id="1-使用-more-阅读全文，跳转页面不会回到顶部"><a href="#1-使用-more-阅读全文，跳转页面不会回到顶部" class="headerlink" title="1. 使用 more  阅读全文，跳转页面不会回到顶部"></a>1. 使用 <code>more </code> 阅读全文，跳转页面不会回到顶部</h2><p>hexo next 在文章中使用 <code>&lt;!-- more --&gt;</code> 手动进行截断，进入文章详情页后会不回到顶部。<code>more</code> 被识别成了锚点。</p>
 <p><strong>解决方法</strong></p>
 <ol>
 <li>选择文件 themes/next/layout/_macro/post.swig</li>
