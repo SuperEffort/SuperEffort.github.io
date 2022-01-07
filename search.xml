@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MOCK方案对比</title>
+    <title>MOCK 方案对比</title>
     <url>/2021/09/09/MOCK%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<h1 id="常见的-MOCK-方案"><a href="#常见的-MOCK-方案" class="headerlink" title="常见的 MOCK 方案"></a>常见的 MOCK 方案</h1><h3 id="1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件"><a href="#1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件" class="headerlink" title="1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)"></a>1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)</h3><p><strong>优点：</strong> 无</p>
 <p><strong>缺点：</strong></p>
@@ -54,22 +54,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo next 配置相关</title>
-    <url>/2021/09/10/hexo-next/</url>
-    <content><![CDATA[<h2 id="1-使用-more-阅读全文，跳转页面不会回到顶部"><a href="#1-使用-more-阅读全文，跳转页面不会回到顶部" class="headerlink" title="1. 使用 more  阅读全文，跳转页面不会回到顶部"></a>1. 使用 <code>more </code> 阅读全文，跳转页面不会回到顶部</h2><p>hexo next 在文章中使用 <code>&lt;!-- more --&gt;</code> 手动进行截断，进入文章详情页后会不回到顶部。<code>more</code> 被识别成了锚点。</p>
-<p><strong>解决方法</strong></p>
-<ol>
-<li>选择文件 themes/next/layout/_macro/post.swig</li>
-<li>删除代码中的 <code>#more</code></li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; url_for(post.path) &#125;&#125;#more&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;contents&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaScript基本数据类型</title>
     <url>/2021/12/06/JavaScript%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<p><img src="/images/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>
@@ -77,6 +61,58 @@
       <tags>
         <tag>JavaScript</tag>
         <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 相关配置</title>
+    <url>/2021/09/10/hexo%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="1-Hexo-的基本操作"><a href="#1-Hexo-的基本操作" class="headerlink" title="1. Hexo 的基本操作"></a>1. Hexo 的基本操作</h2><ul>
+<li><p>初始化博客</p>
+<blockquote>
+<p>hexo init 文件夹名称</p>
+</blockquote>
+</li>
+<li><p>添加文章</p>
+<blockquote>
+<p>hexo new 文章名称</p>
+</blockquote>
+</li>
+<li><p>在线预览</p>
+<blockquote>
+<p>hexo server &amp; hexo s</p>
+</blockquote>
+</li>
+<li><p>一键部署</p>
+<blockquote>
+<p>hexo deploy &amp; hexo d</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-使用-more-阅读全文，跳转页面不会回到顶部"><a href="#2-使用-more-阅读全文，跳转页面不会回到顶部" class="headerlink" title="2. 使用 more  阅读全文，跳转页面不会回到顶部"></a>2. 使用 <code>more </code> 阅读全文，跳转页面不会回到顶部</h2><p>hexo next 在文章中使用 <code>&lt;!-- more --&gt;</code> 手动进行截断，进入文章详情页后会不回到顶部。<code>more</code> 被识别成了锚点。</p>
+<p><strong>解决方法</strong></p>
+<ol>
+<li>选择文件 themes/next/layout/_macro/post.swig</li>
+<li>删除代码中的 <code>#more</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; url_for(post.path) &#125;&#125;#more&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;contents&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 相关配置</title>
+    <url>/2022/01/07/Git%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="git-开启区分大小写后-删除重复的文件"><a href="#git-开启区分大小写后-删除重复的文件" class="headerlink" title="git 开启区分大小写后, 删除重复的文件"></a>git 开启区分大小写后, 删除重复的文件</h2><ol>
+<li>让git区分大小写: <code>git config core.ignorecase false</code></li>
+<li>删除缓存: <code>git rm -r --cached .</code></li>
+<li>添加当前目录的所有文件: <code>git add .</code></li>
+<li>写注释: <code>git commit -m &#39;fix: 修复git大小写不敏感造成的文件未上传&#39;</code></li>
+<li>提交: <code>git push</code></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
 </search>
