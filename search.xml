@@ -1,109 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>JavaScript基本数据类型</title>
-    <url>/2021/12/06/JavaScript%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<p><img src="/images/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>
-]]></content>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 相关配置</title>
-    <url>/2022/01/07/Git%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="git-开启区分大小写后-删除重复的文件"><a href="#git-开启区分大小写后-删除重复的文件" class="headerlink" title="git 开启区分大小写后, 删除重复的文件"></a>git 开启区分大小写后, 删除重复的文件</h2><ol>
-<li>让git区分大小写: <code>git config core.ignorecase false</code></li>
-<li>删除缓存: <code>git rm -r --cached .</code></li>
-<li>添加当前目录的所有文件: <code>git add .</code></li>
-<li>写注释: <code>git commit -m &#39;fix: 修复git大小写不敏感造成的文件未上传&#39;</code></li>
-<li>提交: <code>git push</code></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MOCK 方案对比</title>
-    <url>/2021/09/09/MOCK%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/</url>
-    <content><![CDATA[<h1 id="常见的-MOCK-方案"><a href="#常见的-MOCK-方案" class="headerlink" title="常见的 MOCK 方案"></a>常见的 MOCK 方案</h1><h3 id="1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件"><a href="#1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件" class="headerlink" title="1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)"></a>1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)</h3><p><strong>优点：</strong> 无</p>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>和其他方案比 Mock 效果不好。</li>
-<li>与真实 Server 环境的切换非常麻烦，一切需要侵入代码切换环境的行为都是不好的。<span id="more"></span>
-<h3 id="2-请求拦截"><a href="#2-请求拦截" class="headerlink" title="2.请求拦截"></a>2.请求拦截</h3></li>
-</ol>
-<p>代表：<a href="http://mockjs.com/">Mock.js</a></p>
-<p>示例：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Mock.mock(<span class="regexp">/\\/</span>api\\/visitor\\/list/, <span class="string">&#x27;get&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">code</span>: <span class="number">2000</span>,</span><br><span class="line">  <span class="attr">msg</span>: <span class="string">&#x27;ok&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;data|10&#x27;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&#x27;id|+1&#x27;</span>: <span class="number">6</span>,</span><br><span class="line">      <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;@csentence(5)&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;tag&#x27;</span>: <span class="string">&#x27;@integer(6, 9)-@integer(10, 14)岁 @cword(&quot;零有&quot;, 1)基础&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;lesson_image&#x27;</span>: <span class="string">&quot;&lt;https://images.pexels.com/3737094/pexels-photo-3737094.jpeg&gt;&quot;</span>,</span><br><span class="line">      <span class="string">&#x27;lesson_package&#x27;</span>: <span class="string">&#x27;L1基础指令课&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;done&#x27;</span>: <span class="string">&#x27;@integer(10000, 99999)&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>优点：</strong></p>
-<ol>
-<li>与前端代码分离</li>
-<li>可生成随机数据</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li><p>数据都是动态生成的假数据，无法真实模拟增删改查的情况。</p>
-</li>
-<li><p>只支持 ajax，不支持 fetch。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/24594294">ajax 和 fetch 区别</a></p>
-</li>
-</ol>
-<h3 id="3-接口管理工具"><a href="#3-接口管理工具" class="headerlink" title="3.接口管理工具"></a>3.接口管理工具</h3><p><strong>代表：</strong> <a href="https://github.com/thx/RAP">rap</a>、<a href="https://swagger.io/">swagger</a>、<a href="https://github.com/dreamhead/moco">moco</a>、<a href="https://github.com/YMFE/yapi">yapi</a></p>
-<p><strong>优点：</strong></p>
-<ol>
-<li>配置功能强大，接口管理与 Mock 一体，后端修改接口 Mock 也跟着更改，可靠。</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>配置复杂，依赖后端，可能会出现后端不愿意出手，或者等配置完了，接口也开发出来了的情况。</li>
-<li>一般会作为大团队的基础建设而存在</li>
-</ol>
-<h3 id="4-本地-Node-服务器"><a href="#4-本地-Node-服务器" class="headerlink" title="4.本地 Node 服务器"></a>4.本地 Node 服务器</h3><p><strong>代表：</strong><a href="https://github.com/typicode/json-server">json-server</a></p>
-<p><strong>优点：</strong></p>
-<ol>
-<li>配置简单，json-server 甚至可以 0 代码 30 秒启动一个 REST API Server。</li>
-<li>自定义程度高，一切尽在掌控中。</li>
-<li>增删改查真实模拟。</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>与接口管理工具相比，无法随着后端 API 的修改而自动修改。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Mock</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 相关配置</title>
-    <url>/2021/09/10/hexo%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="1、Hexo-的基本操作"><a href="#1、Hexo-的基本操作" class="headerlink" title="1、Hexo 的基本操作"></a>1、Hexo 的基本操作</h2><ul>
-<li><p>初始化博客</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init 文件夹名称</span><br></pre></td></tr></table></figure></li>
-<li><p>添加文章</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new 文章名称</span><br></pre></td></tr></table></figure></li>
-<li><p>在线预览</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo server &amp; hexo s</span><br></pre></td></tr></table></figure></li>
-<li><p>生成静态文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo generate &amp; hexo g &amp; hexo g --watch</span><br></pre></td></tr></table></figure></li>
-<li><p>部署</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo deploy &amp; hexo d &amp; hexo generate --deploy</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="2、使用-more-阅读全文，跳转页面不会回到顶部"><a href="#2、使用-more-阅读全文，跳转页面不会回到顶部" class="headerlink" title="2、使用 more 阅读全文，跳转页面不会回到顶部"></a>2、使用 <code>more</code> 阅读全文，跳转页面不会回到顶部</h2><p>hexo next 在文章中使用 <code>&lt;!-- more --&gt;</code> 手动进行截断，进入文章详情页后会不回到顶部。<code>more</code> 被识别成了锚点。</p>
-<p><strong>解决方法</strong></p>
-<ol>
-<li>选择文件 themes/next/layout/_macro/post.swig</li>
-<li>删除代码中的 <code>#more</code></li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; url_for(post.path) &#125;&#125;#more&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;contents&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Git 相关配置</title>
+      <link href="/2022/01/07/Git%E7%9B%B8%E5%85%B3/"/>
+      <url>/2022/01/07/Git%E7%9B%B8%E5%85%B3/</url>
+      
+        <content type="html"><![CDATA[<h2 id="git-开启区分大小写后-删除重复的文件"><a href="#git-开启区分大小写后-删除重复的文件" class="headerlink" title="git 开启区分大小写后, 删除重复的文件"></a>git 开启区分大小写后, 删除重复的文件</h2><ol><li>让git区分大小写: <code>git config core.ignorecase false</code></li><li>删除缓存: <code>git rm -r --cached .</code></li><li>添加当前目录的所有文件: <code>git add .</code></li><li>写注释: <code>git commit -m &#39;fix: 修复git大小写不敏感造成的文件未上传&#39;</code></li><li>提交: <code>git push</code></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JavaScript基本数据类型</title>
+      <link href="/2021/12/06/JavaScript%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+      <url>/2021/12/06/JavaScript%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/images/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo 相关配置</title>
+      <link href="/2021/09/10/hexo%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
+      <url>/2021/09/10/hexo%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1、Hexo-的基本操作"><a href="#1、Hexo-的基本操作" class="headerlink" title="1、Hexo 的基本操作"></a>1、Hexo 的基本操作</h2><ul><li><p>初始化博客</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init 文件夹名称</span><br></pre></td></tr></table></figure></li><li><p>添加文章</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 文章名称</span><br></pre></td></tr></table></figure></li><li><p>在线预览</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server &amp; hexo s</span><br></pre></td></tr></table></figure></li><li><p>生成静态文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate &amp; hexo g &amp; hexo g --watch</span><br></pre></td></tr></table></figure></li><li><p>部署</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy &amp; hexo d &amp; hexo generate --deploy</span><br></pre></td></tr></table></figure></li></ul><hr><h2 id="2、使用-more-阅读全文，跳转页面不会回到顶部"><a href="#2、使用-more-阅读全文，跳转页面不会回到顶部" class="headerlink" title="2、使用 more 阅读全文，跳转页面不会回到顶部"></a>2、使用 <code>more</code> 阅读全文，跳转页面不会回到顶部</h2><p>hexo next 在文章中使用 <code>&lt;!-- more --&gt;</code> 手动进行截断，进入文章详情页后会不回到顶部。<code>more</code> 被识别成了锚点。</p><p><strong>解决方法</strong></p><ol><li>选择文件 themes/next/layout/_macro/post.swig</li><li>删除代码中的 <code>#more</code></li></ol><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; url_for(post.path) &#125;&#125;#more&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;contents&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MOCK 方案对比</title>
+      <link href="/2021/09/09/MOCK%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/"/>
+      <url>/2021/09/09/MOCK%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94/</url>
+      
+        <content type="html"><![CDATA[<h1 id="常见的-MOCK-方案"><a href="#常见的-MOCK-方案" class="headerlink" title="常见的 MOCK 方案"></a>常见的 MOCK 方案</h1><h3 id="1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件"><a href="#1-代码侵入-直接在代码中写死-Mock-数据，或者请求本地的-JSON-文件" class="headerlink" title="1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)"></a>1.代码侵入 (直接在代码中写死 Mock 数据，或者请求本地的 JSON 文件)</h3><p><strong>优点：</strong> 无</p><p><strong>缺点：</strong></p><ol><li>和其他方案比 Mock 效果不好。</li><li>与真实 Server 环境的切换非常麻烦，一切需要侵入代码切换环境的行为都是不好的。<span id="more"></span><h3 id="2-请求拦截"><a href="#2-请求拦截" class="headerlink" title="2.请求拦截"></a>2.请求拦截</h3></li></ol><p>代表：<a href="http://mockjs.com/">Mock.js</a></p><p>示例：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="regexp">/\\/</span>api\\/visitor\\/list/, <span class="string">&#x27;get&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">code</span>: <span class="number">2000</span>,</span><br><span class="line">  <span class="attr">msg</span>: <span class="string">&#x27;ok&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;data|10&#x27;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&#x27;id|+1&#x27;</span>: <span class="number">6</span>,</span><br><span class="line">      <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;@csentence(5)&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;tag&#x27;</span>: <span class="string">&#x27;@integer(6, 9)-@integer(10, 14)岁 @cword(&quot;零有&quot;, 1)基础&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;lesson_image&#x27;</span>: <span class="string">&quot;&lt;https://images.pexels.com/3737094/pexels-photo-3737094.jpeg&gt;&quot;</span>,</span><br><span class="line">      <span class="string">&#x27;lesson_package&#x27;</span>: <span class="string">&#x27;L1基础指令课&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;done&#x27;</span>: <span class="string">&#x27;@integer(10000, 99999)&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><strong>优点：</strong></p><ol><li>与前端代码分离</li><li>可生成随机数据</li></ol><p><strong>缺点：</strong></p><ol><li><p>数据都是动态生成的假数据，无法真实模拟增删改查的情况。</p></li><li><p>只支持 ajax，不支持 fetch。</p><p><a href="https://zhuanlan.zhihu.com/p/24594294">ajax 和 fetch 区别</a></p></li></ol><h3 id="3-接口管理工具"><a href="#3-接口管理工具" class="headerlink" title="3.接口管理工具"></a>3.接口管理工具</h3><p><strong>代表：</strong> <a href="https://github.com/thx/RAP">rap</a>、<a href="https://swagger.io/">swagger</a>、<a href="https://github.com/dreamhead/moco">moco</a>、<a href="https://github.com/YMFE/yapi">yapi</a></p><p><strong>优点：</strong></p><ol><li>配置功能强大，接口管理与 Mock 一体，后端修改接口 Mock 也跟着更改，可靠。</li></ol><p><strong>缺点：</strong></p><ol><li>配置复杂，依赖后端，可能会出现后端不愿意出手，或者等配置完了，接口也开发出来了的情况。</li><li>一般会作为大团队的基础建设而存在</li></ol><h3 id="4-本地-Node-服务器"><a href="#4-本地-Node-服务器" class="headerlink" title="4.本地 Node 服务器"></a>4.本地 Node 服务器</h3><p><strong>代表：</strong><a href="https://github.com/typicode/json-server">json-server</a></p><p><strong>优点：</strong></p><ol><li>配置简单，json-server 甚至可以 0 代码 30 秒启动一个 REST API Server。</li><li>自定义程度高，一切尽在掌控中。</li><li>增删改查真实模拟。</li></ol><p><strong>缺点：</strong></p><ol><li>与接口管理工具相比，无法随着后端 API 的修改而自动修改。</li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Mock </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>
