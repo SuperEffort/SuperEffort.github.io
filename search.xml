@@ -11,8 +11,24 @@
 <li>提交: <code>git push</code></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript基本数据类型</title>
+    <url>/2021/12/06/JavaScript%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<p><img src="/images/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
@@ -64,18 +80,11 @@
 <li>与接口管理工具相比，无法随着后端 API 的修改而自动修改。</li>
 </ol>
 ]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
       <tags>
         <tag>Mock</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaScript基本数据类型</title>
-    <url>/2021/12/06/JavaScript%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<p><img src="/images/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>
-]]></content>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
@@ -102,6 +111,9 @@
 </ol>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; url_for(post.path) &#125;&#125;#more&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;contents&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
       <tags>
         <tag>Hexo</tag>
       </tags>
