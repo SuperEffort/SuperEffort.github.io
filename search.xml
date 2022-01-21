@@ -3,7 +3,41 @@
   <entry>
     <title>Git 相关配置</title>
     <url>/2022/01/07/Git%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="git-开启区分大小写后-删除重复的文件"><a href="#git-开启区分大小写后-删除重复的文件" class="headerlink" title="git 开启区分大小写后, 删除重复的文件"></a>git 开启区分大小写后, 删除重复的文件</h2><ol>
+    <content><![CDATA[<h2 id="git的基本操作"><a href="#git的基本操作" class="headerlink" title="git的基本操作"></a>git的基本操作</h2><h3 id="git-建立存储库的三种方式"><a href="#git-建立存储库的三种方式" class="headerlink" title="git 建立存储库的三种方式"></a>git 建立存储库的三种方式</h3><ul>
+<li><p>初始化存储库 <code>git init</code></p>
+</li>
+<li><p>克隆远程仓库 <code>git clone [REPOSITORY_URI]</code></p>
+</li>
+<li><p>建立本地存储库 <code>git init --bare</code></p>
+<blockquote>
+<p>这个资料夹不能直接拿来做开发用途，只能用来储存 Git 的相关资讯。</p>
+<p>由于这是一个“没有工作目录的纯储存库”，所以共用储存库也有个别名叫做“裸储存库”</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="git-指令与参数（增删改查）"><a href="#git-指令与参数（增删改查）" class="headerlink" title="git 指令与参数（增删改查）"></a>git 指令与参数（增删改查）</h3><ul>
+<li><p>显示工作目录和暂存区的状态  <code>git status</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git status -s #显示较为精简的版本。</span><br></pre></td></tr></table></figure></li>
+<li><p>重置工作目录状态、一般用于撤销之前的操作 <code>git reset</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git reset --hard #还原到目前的最新版</span><br></pre></td></tr></table></figure></li>
+<li><p>显示提交日志信息 <code>git log</code> </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git log -10 #限定输出最近几条纪录</span><br></pre></td></tr></table></figure></li>
+<li><p>将修改添加到暂存区 <code>git add</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add [file1] [file2] ... # 添加指定文件到暂存区</span><br><span class="line">git add [dir] # 添加指定目录到暂存区，包括子目录</span><br><span class="line">git add . # 添加当前目录的所有文件到暂存区</span><br></pre></td></tr></table></figure></li>
+<li><p>将更改记录(提交)到存储库 <code>git commit</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;版本纪录的说明文字&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>从工作区和索引中删除文件 <code>git rm </code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git rm &#x27;file.js&#x27; # 删除 file.js</span><br></pre></td></tr></table></figure></li>
+<li><p>移动或重命名文件 <code>git mv </code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git mv test unit-test # 把 `test` 目录更名为 `unit-test`</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用 <code>git rm</code> 删除的目录或档案，还是用 <code>git mv</code> 更名的目录或档案，通过 <code>git reset</code> 都无法还原回来</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="git提交"><a href="#git提交" class="headerlink" title="git提交"></a>git提交</h3><h2 id="git-开启区分大小写后-删除重复的文件"><a href="#git-开启区分大小写后-删除重复的文件" class="headerlink" title="git 开启区分大小写后, 删除重复的文件"></a>git 开启区分大小写后, 删除重复的文件</h2><ol>
 <li>让git区分大小写: <code>git config core.ignorecase false</code></li>
 <li>删除缓存: <code>git rm -r --cached .</code></li>
 <li>添加当前目录的所有文件: <code>git add .</code></li>
