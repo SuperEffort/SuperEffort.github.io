@@ -53,9 +53,9 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript基本数据类型</title>
+    <title>JavaScript基础</title>
     <url>/2021/12/06/JavaScript%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<p><img src="/images/JavaScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png"></p>
+    <content><![CDATA[<h2 id="JavaScript基本数据类型"><a href="#JavaScript基本数据类型" class="headerlink" title="JavaScript基本数据类型"></a>JavaScript基本数据类型</h2><p><img src="https://s4.ax1x.com/2022/01/24/7IjDWq.png"></p>
 ]]></content>
       <categories>
         <category>javascript</category>
@@ -156,6 +156,48 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue3入门</title>
+    <url>/2022/01/24/vue3%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h1 id="Vue3的优势"><a href="#Vue3的优势" class="headerlink" title="Vue3的优势"></a>Vue3的优势</h1><ol>
+<li><p>vue3使用了<code>typescript</code>重构了项目，获得了更好的类型支持</p>
+</li>
+<li><p>重构<code>响应式系统</code>，vue3 使用<code>proxy</code>替换了<code>Object.defineProperty</code>，解决Vue2中存在的问题</p>
+<ul>
+<li>可直接监听数组类型的变化</li>
+<li>更好的性能，监听目标发生变化，不需要像<code>Object.defineProperty</code>一样遍历每一个属性</li>
+<li>更强大的拦截功能，拦截器</li>
+</ul>
+</li>
+<li><p>引入了<code>composition API</code>，解决功能、数据、业务逻辑分散的问题。</p>
+</li>
+<li><p>优化了<code>Virtual DOM</code></p>
+<ul>
+<li>模板编译时优化，将一些静态节点编译成常量</li>
+<li><code>slot</code>优化；将<code>slot</code>编译为<code>lazy</code>函数，将<code>slot</code>的渲染的决定权交给子组件</li>
+<li>模板中内联事件的提取并重用（原本每次渲染都重新生成内联函数）</li>
+</ul>
+</li>
+<li><p>更好的<code>Tree shaking</code></p>
+<blockquote>
+<p>Tree-shaking其实就是把无用的模块进行“剪枝”，很多没有用到的API就不会打包到最后的包里</p>
+</blockquote>
+</li>
+<li><p><code>Teleport </code>任意门</p>
+</li>
+<li><p><code>Suspense </code> 异步加载动画</p>
+</li>
+<li><p><code>Fragment </code>片段、允许多个根节点</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
 </search>
