@@ -200,4 +200,63 @@
         <tag>vue</tag>
       </tags>
   </entry>
+  <entry>
+    <title>前端RSA+AES混合加密</title>
+    <url>/2022/04/19/%E5%89%8D%E7%AB%AFRSA-AES%E6%B7%B7%E5%90%88%E5%8A%A0%E5%AF%86/</url>
+    <content><![CDATA[<h2 id="前端RSA-AES混合加密"><a href="#前端RSA-AES混合加密" class="headerlink" title="前端RSA+AES混合加密"></a>前端RSA+AES混合加密</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    最近在工作中使用到了RSA和AES加密，网上也有很多教程，但是没有什么时效性了，所以想把内容记录下来和同学们一起学习交流</p>
+<h2 id="一、为什么要使用RSA和AES？"><a href="#一、为什么要使用RSA和AES？" class="headerlink" title="一、为什么要使用RSA和AES？"></a>一、为什么要使用RSA和AES？</h2><ol>
+<li><p>RSA和AES是什么？</p>
+<ul>
+<li><p>RSA：非对称加密，使用<code>公钥</code>和<code>私钥</code>加密和解密，加密速度慢</p>
+</li>
+<li><p>AES：对称加密，加密和解密使用<code>同一个密钥</code>，加密速度快</p>
+</li>
+</ul>
+</li>
+<li><p>为什么要混淆？只用一个不行吗？</p>
+<p>因为AES加密速度快，自然是我们的第一选择，但是缺点也明显。因为使用<code>同一个密钥</code>，如果有一方密钥泄露，那么数据也就不安全了。所以我们可以结合RSA互补二者的缺点，使用RSA来加密传递AES密钥，用AES来加密数据。</p>
+</li>
+</ol>
+<h2 id="二、思路"><a href="#二、思路" class="headerlink" title="二、思路"></a>二、思路</h2><ul>
+<li>服务端生成RSA密钥对（<code>privateKey-1</code>、<code>publicKey-1</code>），把<code>公钥 publicKey-1</code>发送给客户端</li>
+<li>客户端生成RSA密钥对（<code>privateKey-2</code>、<code>publicKey-2</code>），使用<strong>服务端</strong>的<code>公钥</code>加密自己的 <code>公钥publicKey-2</code> ，将加密后的数据发送给服务端</li>
+<li>服务端使用自己的<code>私钥</code>解密获取到<strong>客户端</strong>的公钥，将<code>AESKey</code>使用客户端<code>公钥 publicKey-2</code>加密发送给客户端</li>
+<li>客户端使用自己的<code>私钥</code>解密获取<code>AESkey</code></li>
+<li>双方使用<code>AESkey</code>来进行数据传输</li>
+</ul>
+<h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><p><a href="https://imgtu.com/i/qY5VzD"><img width="100%" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/60d54a1e9b8e4e188f901451a2ca7a72~tplv-k3u1fbpfcp-zoom-1.image" alt="qY5VzD.png" border="0" /></a></p>
+<blockquote>
+<p>如果流程从客户端开始，原理也是一样的，只需要把双方角色互换即可</p>
+</blockquote>
+<h2 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h2><p>前端需要用到两个npm包</p>
+<ul>
+<li><a href="https://github.com/brix/crypto-js">crypto-js</a> 用于操作AES密钥</li>
+<li><a href="https://github.com/travist/jsencrypt">JSEncrypt</a> 用于操作RSA密钥，如果加密密文过长可以替换为<a href="https://github.com/lsxlsxxslxsl/encryptlong">encryptlong</a></li>
+</ul>
+<p>生成RSA密钥</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> CryptoJS <span class="keyword">from</span> <span class="string">&#x27;crypto-js/crypto-js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> JSEncrypt <span class="keyword">from</span> <span class="string">&#x27;jsencrypt&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"><span class="keyword">const</span> keyPair = <span class="keyword">new</span> JSEncrypt()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> genKeyPair = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> genKeyPair = &#123;&#125;</span><br><span class="line">    genKeyPair.privateKey = rsaUtil.keyPair.getPrivateKey() <span class="comment">// 生成RSA密钥</span></span><br><span class="line">    genKeyPair.publicKey = rsaUtil.keyPair.getPublicKey() <span class="comment">// 生成RSA公钥</span></span><br><span class="line">    <span class="keyword">return</span> genKeyPair</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RSA公钥加密 - 收到服务端公钥后加密公钥</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * rsa公钥加密</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>cipherContent 需要加密内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>publicKey 服务端的公钥</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> encryptByRsa = <span class="function">(<span class="params">cipherContent, publicKey</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> newValue = <span class="keyword">typeof</span> cipherContent === <span class="string">&#x27;string&#x27;</span> ? cipherContent : cipherContent.toString()</span><br><span class="line">    keyPair.setPublicKey(publicKey)</span><br><span class="line">    <span class="keyword">return</span> keyPair.encryptLong(newValue) <span class="comment">// 注意：加密类型为string</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>RSA解密 - 解密后取到AES key</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * rsa私钥解密</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>plainContent 解密的内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>privateKey 解密私钥</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> decryptByRsa = <span class="function">(<span class="params">plainContent, privateKey</span>) =&gt;</span> &#123;</span><br><span class="line">    keyPair.setPrivateKey(privateKey)</span><br><span class="line">    <span class="keyword">return</span> keyPair.decryptLong(plainContent)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>AES 加密</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * AES 加密</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>cipherContent 加密的内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>key AES key</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> encrypt = <span class="function">(<span class="params">cipherContent, key</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> aesKey = CryptoJS.enc.Utf8.parse(key)</span><br><span class="line">	<span class="keyword">const</span> newValue = <span class="keyword">typeof</span> cipherContent === <span class="string">&#x27;string&#x27;</span> ? cipherContent : cipherContent.toString()</span><br><span class="line">    <span class="keyword">const</span> encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(newValue), aesKey, &#123; <span class="attr">mode</span>: CryptoJS.mode.ECB, <span class="attr">padding</span>: CryptoJS.pad.Pkcs7 &#125;)</span><br><span class="line">    <span class="keyword">return</span> encrypted.toString()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>AES 解密</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * AES解密</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>plainContent 解密的内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>key AES key</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="attr">decrypt</span>: <span class="function">(<span class="params">plainContent, key</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> aesKey = CryptoJS.enc.Utf8.parse(key)</span><br><span class="line">    <span class="keyword">const</span> decrypt = CryptoJS.AES.decrypt(plainContent, aesKey, &#123; <span class="attr">mode</span>: CryptoJS.mode.ECB, <span class="attr">padding</span>: CryptoJS.pad.Pkcs7 &#125;)</span><br><span class="line">    <span class="keyword">const</span> decString = CryptoJS.enc.Utf8.stringify(decrypt).toString()</span><br><span class="line">    <span class="keyword">return</span> decString <span class="keyword">instanceof</span> <span class="built_in">Object</span> ? decString : <span class="built_in">JSON</span>.parse(decString)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、Q-amp-A"><a href="#四、Q-amp-A" class="headerlink" title="四、Q&amp;A"></a>四、Q&amp;A</h2><p>剩下几个问题想和大家一起探讨下</p>
+<ol>
+<li><p>前端加密有意义吗？</p>
+<p>我的回答是防君子不防小人，真正的”安全”还是得靠后端的同学</p>
+</li>
+<li><p>前端怎么安全的存储密钥？</p>
+<p>我现在的操作还是二次加密后存储session，不知道同学们是否有更好的方案</p>
+</li>
+</ol>
+]]></content>
+  </entry>
 </search>
