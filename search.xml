@@ -259,4 +259,24 @@
 </ol>
 ]]></content>
   </entry>
+  <entry>
+    <title>Vue打包后本地预览</title>
+    <url>/2022/06/07/Vue%E6%89%93%E5%8C%85%E5%90%8E%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88/</url>
+    <content><![CDATA[<h1 id="Vue打包编译本地预览"><a href="#Vue打包编译本地预览" class="headerlink" title="Vue打包编译本地预览"></a>Vue打包编译本地预览</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Vue项目中，打包后会在<code>dist</code>下生成静态文件，直接打开就是空白页。</p>
+<p>如果想查看打包后的效果，服务器一系列配置又太麻烦，那么我们可以自己启动一个服务来进行<code>本地预览</code></p>
+<h2 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h2><p>其实在 <a href="https://cli.vuejs.org/zh/guide/deployment.html">Vue-Cli</a> 的官方文档中就给出了我们解决方案，使用一个 Node.js 静态文件服务器，例如 <a href="https://github.com/zeit/serve">serve</a></p>
+<h3 id="Serve"><a href="#Serve" class="headerlink" title="Serve"></a>Serve</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装</span></span><br><span class="line">npm install serve -g</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 (在打包后的dist目录下)</span></span><br><span class="line">serve .</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgtu.com/i/X8sR5n"><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bf683783b3ec47779166d68200197e54~tplv-k3u1fbpfcp-zoom-1.image" alt="X8sR5n.png"></a></p>
+<p>运行成功后就能看到下预览的地址，但是这样还会出现一个问题，想要测试接口发现出现了<code>跨域</code>。那么就可以自行搭建一个Node服务来进行预览。</p>
+<h3 id="Node-serve"><a href="#Node-serve" class="headerlink" title="Node-serve"></a>Node-serve</h3><p>我们需要用到三个模块 <a href="https://github.com/expressjs/express">express</a>、<a href="https://github.com/chimurai/http-proxy-middleware">http-proxy-middleware</a>、<a href="https://github.com/bripkens/connect-history-api-fallback">connect-history-api-fallback</a></p>
+<p><code>express</code>搭建本地服务器</p>
+<p><code>http-proxy-middleware</code>接口跨域的问题</p>
+<p><code>connect-history-api-fallback</code>处理Vue路由<code>history</code>模式，如果路由为默认<code>hash</code>模式则不需要这个模块</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> history = <span class="built_in">require</span>(<span class="string">&#x27;connect-history-api-fallback&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; createProxyMiddleware &#125; = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理单页应用路由</span></span><br><span class="line">app.use(history())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理对象地址</span></span><br><span class="line">app.use(<span class="string">&#x27;/api&#x27;</span>, createProxyMiddleware(&#123;</span><br><span class="line">    <span class="attr">target</span>: <span class="string">&#x27;http://webApi&#x27;</span>,</span><br><span class="line">    <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">pathRewrite</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;^api&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载静态资源</span></span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">&#x27;./dist&#x27;</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动服务</span></span><br><span class="line">app.listen(<span class="number">3001</span>, <span class="function">()=&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;success =&gt; http://localhost:3001&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>这就是我目前本地的预览的方法，如果大家有更好的建议欢迎大家留言讨论</p>
+]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
 </search>
